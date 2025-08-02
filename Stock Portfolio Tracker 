@@ -1,0 +1,41 @@
+stock_prices = {
+    "AAPL": 180,
+    "TSLA": 250,
+    "GOOGL": 140,
+    "AMZN": 130,
+    "MSFT": 300
+}
+
+# Input: User enters stock name and quantity
+portfolio = {}
+
+print("📊 Stock Portfolio Tracker")
+print("Available stocks:", ', '.join(stock_prices.keys()))
+
+while True:
+    stock = input("Enter stock symbol (or type 'done' to finish): ").upper()
+    if stock == 'DONE':
+        break
+    if stock not in stock_prices:
+        print("❗ Invalid stock symbol. Try again.")
+        continue
+    try:
+        quantity = int(input(f"Enter quantity of {stock}: "))
+    except ValueError:
+        print("❗ Quantity must be a number.")
+        continue
+    if stock in portfolio:
+        portfolio[stock] += quantity
+    else:
+        portfolio[stock] = quantity
+
+# Calculate and display total investment
+total = 0
+print("\n📈 Portfolio Summary:")
+for stock, qty in portfolio.items():
+    price = stock_prices[stock]
+    value = qty * price
+    total += value
+    print(f"{stock}: {qty} shares × ₹{price} = ₹{value}")
+
+print(f"\n💰 Total Investment: ₹{total}")
