@@ -6,10 +6,9 @@ stock_prices = {
     "MSFT": 300
 }
 
-# Input: User enters stock name and quantity
 portfolio = {}
 
-print("📊 Stock Portfolio Tracker")
+print("Stock Portfolio Tracker")
 print("Available stocks:", ', '.join(stock_prices.keys()))
 
 while True:
@@ -17,25 +16,24 @@ while True:
     if stock == 'DONE':
         break
     if stock not in stock_prices:
-        print("❗ Invalid stock symbol. Try again.")
+        print(" ! Invalid stock symbol. Try again.")
         continue
     try:
         quantity = int(input(f"Enter quantity of {stock}: "))
     except ValueError:
-        print("❗ Quantity must be a number.")
+        print(" ! Quantity must be a number.")
         continue
     if stock in portfolio:
         portfolio[stock] += quantity
     else:
         portfolio[stock] = quantity
 
-# Calculate and display total investment
 total = 0
-print("\n📈 Portfolio Summary:")
+print("\n Portfolio Summary:")
 for stock, qty in portfolio.items():
     price = stock_prices[stock]
     value = qty * price
     total += value
     print(f"{stock}: {qty} shares × ₹{price} = ₹{value}")
 
-print(f"\n💰 Total Investment: ₹{total}")
+print(f"\n Total Investment: ₹{total}")
